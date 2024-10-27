@@ -30,6 +30,7 @@ onMounted(fetchCurrencies);
 </script>
 
 <template>
+  <!--HEADER-->
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
@@ -41,12 +42,10 @@ onMounted(fetchCurrencies);
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
+
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Link
+                Options
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Action</a></li>
@@ -55,12 +54,10 @@ onMounted(fetchCurrencies);
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Link</a>
-            </li>
+
           </ul>
           <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control me-2" type="search" placeholder="Search Currencie" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
@@ -70,20 +67,32 @@ onMounted(fetchCurrencies);
     <h1 class="title">MoneyFlow</h1>
   </header>
 
-  <hr>
 
   <main class="moneyPage">
-      <h2>Select the currencie of your preference</h2>
-      <div class="currencies">
-        <button v-if="!show" @click="toggleCurrencies">Show Currencies</button>
-        <button v-if="show" @click="toggleCurrencies">Hide Currencies</button>
-        <!-- Utilização de toggle para manipular o button -->
-        <ul v-if="show">
-          <li v-for="[currency, rate] in currencies" :key="currency">{{ currency }}: {{ rate }}</li>
-        </ul>
-      </div>
+      <section class="select_currencies">
+        <h2 class="title_main">Select the currencie</h2>
+        <hr>
+        <div class="currencies">
+          <button v-if="!show" @click="toggleCurrencies">Show Currencies</button>
+          <button v-if="show" @click="toggleCurrencies">Hide Currencies</button>
+          <!-- Utilização de toggle para manipular o button -->
+          <ul v-if="show">
+            <li v-for="[currency, rate] in currencies" :key="currency">{{ currency }}: {{ rate }}</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="calculator">
+        <div class="calculator_page">
+          <h2 class="title_main">
+            Calculate your currencie
+          </h2>
+          <hr>
+        </div>
+      </section>
   </main>
 
+<!--FOOTER-->
   <footer class="text-center text-lg-start">
     <div>
       <ul class="ul_footer">
@@ -92,21 +101,66 @@ onMounted(fetchCurrencies);
         <li>Contact</li>
       </ul>
     </div>
-      <p class="copy_footer">Desenvolvido por<a href="https://github.com/weslenmombach" target="_blank" > Weslen Mombach </a> <span>&copy;</span></p>
+    <p class="copy_footer">Desenvolvido por&nbsp;<a href="https://github.com/weslenmombach" target="_blank">Weslen Mombach</a>&nbsp;<span>&copy;</span></p>
+
   </footer>
 </template>
 
 <style>
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Roboto', sans-serif;
+}
 .title{
+  text-align: center;
+  font-weight: bolder;
+  padding: 80px;
+}
+
+/*CONTENT MAIN*/
+.moneyPage{
+  display: flex;
+  justify-content: space-around;
+  height: 100vh;
+  background: linear-gradient(to top, #0A3D62,#1E90FF);
+}
+
+main h2{
   text-align: center;
 }
 
+.select_currencies{
+  border: 2px solid white;
+  border-radius: 30px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+  width: 28vw;
+  margin: 40px 0px;
+}
+
+.calculator{
+  border: 2px solid white;
+  border-radius: 30px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+  width: 28vw;
+  margin: 40px 0px;
+}
+
+.title_main{
+  padding-top: 20px;
+}
+
+/* FOOTER */
 footer {
-  background-color: grey;
-  color: black;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza todos os elementos filhos horizontalmente */
+  align-items: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #0A3D62;
+  color: white;
+  padding-top: 100px;
 }
 
 .ul_footer {
@@ -114,8 +168,8 @@ footer {
   display: flex;
   justify-content: space-between;
   max-width: 300px;
-  width: 100%; /* Faz o <ul> ocupar 100% de largura */
-  margin: 0 auto; /* Centraliza o <ul> */
+  width: 100%; 
+  margin: 0 auto; 
   padding: 0;
 }
 
@@ -125,7 +179,7 @@ footer {
 
 .copy_footer {
   text-decoration: none;
-  color: black;
+  color: white;
   display: flex;
   justify-content: center;
   margin-top: 10px;
@@ -133,5 +187,18 @@ footer {
 
 .copy_footer >a:hover {
   text-decoration: underline;
+}
+
+/* RESPONSIVIDADE PRA DIFERENTES TELAS */
+@media (max-width: 1280px) {
+  .moneyPage {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .select_currencies, .calculator {
+    width: 80%;
+    height: 100vh;
+  }
 }
 </style>
