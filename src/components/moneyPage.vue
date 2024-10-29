@@ -62,15 +62,11 @@ onMounted(fetchCurrencies);
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Options
+                Menu
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
+                <li><a class="dropdown-item" href="#">Select</a></li>
+                <li><a class="dropdown-item" href="#">Calculate</a></li>
               </ul>
             </li>
           </ul>
@@ -96,7 +92,7 @@ onMounted(fetchCurrencies);
   <div class="totalContent">
     <div class="topSections">
       <section class="select_currencies">
-        <h2 class="title_main">Select the currency</h2>
+        <h2 class="title_main">Select currency</h2>
         <hr />
         <div class="currencies">
           <button v-if="!show" @click="toggleCurrencies">Show Currencies</button>
@@ -110,7 +106,7 @@ onMounted(fetchCurrencies);
       </section>
       <section class="calculator">
         <div class="calculator_page">
-          <h2 class="title_main">Calculate your currency</h2>
+          <h2 class="title_main">Calculate currency</h2>
           <hr />
         </div>
       </section>
@@ -145,9 +141,9 @@ onMounted(fetchCurrencies);
   <footer class="text-center text-lg-start">
     <div>
       <ul class="ul_footer">
-        <li>Home</li>
-        <li>FAQ</li>
-        <li>Contact</li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact</a></li>
       </ul>
     </div>
     <p class="copy_footer">
@@ -168,8 +164,24 @@ onMounted(fetchCurrencies);
 }
 .title {
   text-align: center;
-  font-weight: bolder;
-  padding: 80px;
+  font-weight: 800;
+  font-family: "Roboto Slab", serif;
+  padding: 40px 0px 80px 80px;
+  display: flex;
+  justify-content: left;
+  font-size: 4em;
+  background-color: #1e90ff;
+  margin: 0px;
+  color: white;
+}
+.btn-outline-success{
+  color: #0a3d62;
+  border-color: #0a3d62;
+}
+
+.btn-outline-success:hover{
+  background-color: #1e90ff;
+  border-color: white;
 }
 
 /*CONTENT MAIN*/
@@ -190,7 +202,6 @@ onMounted(fetchCurrencies);
 
   margin-bottom: 20px;
 }
-
 
 main h2 {
   text-align: center;
@@ -215,6 +226,8 @@ main h2 {
 .title_main {
   padding-top: 20px;
   text-align: center;
+  font-family: "Roboto Slab", serif;
+  color: white;
 }
 
 /* FOOTER */
@@ -240,6 +253,15 @@ footer {
   padding: 0;
 }
 
+.ul_footer >li > a{
+  text-decoration: none;
+  color: white;
+}
+
+.ul_footer >li > a:hover{
+  text-decoration: underline;
+}
+
 .ul_footer > li {
   margin: 10px;
 }
@@ -250,6 +272,11 @@ footer {
   display: flex;
   justify-content: center;
   margin-top: 10px;
+}
+
+.copy_footer > a{
+  text-decoration: none;
+  color: white;
 }
 
 .copy_footer > a:hover {
