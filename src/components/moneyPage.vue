@@ -90,27 +90,28 @@ onMounted(fetchCurrencies);
 
 <main class="moneyPage">
   <div class="totalContent">
-    <div class="topSections">
-      <section class="select_currencies">
+    <section class="topSections">
+      <div class="select_currencies">
         <h2 class="title_main">Select currency</h2>
         <hr />
         <div class="currencies">
-          <button v-if="!show" @click="toggleCurrencies">Show Currencies</button>
-          <button v-if="show" @click="toggleCurrencies">Hide Currencies</button>
+          <button class="button_currencies" v-if="!show" @click="toggleCurrencies">Show Currencies</button>
+          <button class="button_hide_currencies" v-if="show" @click="toggleCurrencies">Hide Currencies</button>
           <ul v-if="show">
             <li v-for="[currency, rate] in currencies" :key="currency">
               {{ currency }}: {{ rate }}
             </li>
           </ul>
         </div>
-      </section>
-      <section class="calculator">
+      </div>
+
+      <div class="calculator">
         <div class="calculator_page">
           <h2 class="title_main">Calculate currency</h2>
           <hr />
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
 
     <section class="menu">
       <div class="card text-center">
@@ -187,20 +188,24 @@ onMounted(fetchCurrencies);
 /*CONTENT MAIN*/
 .totalContent {
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
   align-items: center;
   background: linear-gradient(to top, #0a3d62, #1e90ff);
-  min-height: 100vh;
 }
 
 .topSections {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 60%;
-
+  justify-content: space-around;
+  width: 80vw;
   margin-bottom: 20px;
+}
+
+.select_currencies, .calculator {
+  border: 1.8px solid white;
+  border-radius: 40px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+  margin: 20px 40px;
+  height: 80vh;
 }
 
 main h2 {
@@ -214,20 +219,35 @@ main h2 {
   max-width: 600px;
 }
 
-.select_currencies, .calculator {
-  border: 2px solid white;
-  border-radius: 30px;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
-  width: 28vw;
-  margin: 20px 0px; 
-  height: 70vh;
-}
-
 .title_main {
   padding-top: 20px;
   text-align: center;
   font-family: "Roboto Slab", serif;
   color: white;
+}
+
+.button_currencies{
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 150px;
+}
+
+.button_currencies:hover{
+  color: white;
+  background:linear-gradient(to left, rgb(5, 70, 5), green) ;
+}
+
+.button_hide_currencies{
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 150px;
+}
+
+.button_hide_currencies:hover{
+  color: white;
+  background:linear-gradient(to left, rgb(97, 10, 10), red ) ;
 }
 
 /* FOOTER */
@@ -284,16 +304,170 @@ footer {
 }
 
 /* RESPONSIVIDADE PRA DIFERENTES TELAS */
-@media (max-width: 1280px) {
-  .moneyPage {
-    flex-direction: column;
-    align-items: center;
-  }
+@media (max-width: 414px) {
+    .title{
+      padding: 20px;
+      font-size:3em;
+      align-items: center;
+      justify-content:center;
+    }
+    .select_currencies, .calculator{
+      width: 80vw;
+    }
+}
 
-  .select_currencies,
-  .calculator {
-    width: 80%;
-    height: 100vh;
-  }
+@media (min-width: 415px) and (max-width: 767px) {
+  .title{
+      padding: 20px;
+      font-size:3em;
+      align-items: center;
+      justify-content:center;
+    }
+    .topSections {
+  display: flex;
+  justify-content: space-around;
+  width: 80vw;
+  flex-direction: column;
+}
+
+.select_currencies, .calculator {
+  border: 1.8px solid white;
+  margin: 20px 0px; 
+  height: 65vh;
+}
+
+.button_currencies{
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 150px;
+}
+
+.button_currencies:hover{
+  color: white;
+  background:linear-gradient(to left, rgb(5, 70, 5), green) ;
+}
+
+.button_hide_currencies{
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 150px;
+}
+
+.button_hide_currencies:hover{
+  color: white;
+  background:linear-gradient(to left, rgb(97, 10, 10), red ) ;
+}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .topSections {
+  display: flex;
+  justify-content: space-around;
+  width: 80vw;
+  flex-direction: column;
+}
+
+.select_currencies, .calculator {
+  border: 1.8px solid white;
+  margin: 20px 80px;
+  height: 65vh;
+}
+
+.button_currencies{
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 150px;
+}
+
+.button_currencies:hover{
+  color: white;
+  background:linear-gradient(to left, rgb(5, 70, 5), green) ;
+}
+
+.button_hide_currencies{
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 150px;
+}
+
+.button_hide_currencies:hover{
+  color: white;
+  background:linear-gradient(to left, rgb(97, 10, 10), red ) ;
+}
+}
+
+
+@media (min-width: 992px) and (max-width: 1280px) {
+  .topSections {
+  display: flex;
+  justify-content: space-around;
+  width: 80vw;
+  flex-direction: column;
+}
+
+.select_currencies, .calculator {
+  border: 1.8px solid white;
+  margin: 20px 80px;
+  height: 65vh;
+}
+
+.button_currencies{
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 150px;
+}
+
+.button_currencies:hover{
+  color: white;
+  background:linear-gradient(to left, rgb(5, 70, 5), green) ;
+}
+
+.button_hide_currencies{
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 150px;
+}
+
+.button_hide_currencies:hover{
+  color: white;
+  background:linear-gradient(to left, rgb(97, 10, 10), red ) ;
+}
+}
+
+@media (min-width: 1281px) {
+
+    .select_currencies, .calculator{
+      width: 80vw;
+    }
+
+    .button_currencies{
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 150px;
+}
+
+.button_currencies:hover{
+  color: white;
+  background:linear-gradient(to left, rgb(5, 70, 5), green) ;
+}
+
+.button_hide_currencies{
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 150px;
+}
+
+.button_hide_currencies:hover{
+  color: white;
+  background:linear-gradient(to left, rgb(97, 10, 10), red ) ;
+}
 }
 </style>
